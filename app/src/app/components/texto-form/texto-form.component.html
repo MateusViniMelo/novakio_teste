@@ -1,0 +1,17 @@
+<form (ngSubmit)="submit()" [formGroup]="textoForm" #formDir="ngForm">
+    <div class="mb-3">
+      <label for="textInput" class="form-label">Insira um texto</label>
+      <input type="texto" class="{{texto.invalid && formDir.submitted ? 'form-control is-invalid' : 'form-control'}}" formControlName="texto" id="textInput" aria-describedby="textHelp" required>
+      <div class="invalid-feedback" *ngIf="texto.invalid && formDir.submitted">
+        <span *ngIf="texto.errors?.required">Texto é obrigatório</span>
+        <span *ngIf="texto.errors?.minlength">O texto deve conter no mínimo 8 caracteres</span>
+        
+      </div>
+      <div id="textHelp" class="form-text">O texto será salvo no banco de dados, para consultar depois</div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Salvar</button>
+      
+    </div>
+</form>
