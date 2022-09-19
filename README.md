@@ -13,38 +13,37 @@
             <a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/"><img src="icons/bootstrap.png" /></a>
         </td>
         <td>
-            <img src="https://i.imgur.com/Kp5kTUp.png" />
+            <img src="icons/code.png" />
         </td>
     </tr>
 </table> 
 
 
-## Requirements
-You need to have PHP version **8.0** or above. Node.js version **12.0** or above.
+## Requisitos
+1. Angular CLI (v11.0.3)
+2. PHP 7.4
+3. Laravel 8
+4. Mysql 5.7
 
-## Demo
-https://yoursurveys.xyz
 
 
-## Installation
+
+## Instalação
 
 #### Backend
-1. Clone the project
-2. Go to the project root directory
-3. Run `composer install`
-4. Create database
-5. Copy `.env.example` into `.env` file and adjust parameters
-6. Run `php artisan serve` to start the project at http://localhost:8000
+1. Clonar o repositório
+2. Vá para a pasta `api`
+3. Execute `composer install`
+4. Copie o `.env.example` para `.env` e configure o banco  de dados
+5. Execute os comandos: `php artisan key:generate` , `php artisan migrate`
+6. Execute `php artisan serve` e o projeto será executado na porta http://localhost:8000
 
 #### Frontend
-1. Navigate to `vue` folder using terminal
-2. Run `npm install` to install vue.js project dependencies
-3. Copy `vue/.env.example` into `vue/.env` and specify API URL
-4. Start frontend by running `npm run dev`
-5. Open http://localhost:3000
+1. Vá para a pasta `app`
+2. Execute `npm install` para instalar as dependências do projeto
+3. Execute o comando `ng serve --open`
+5. Open http://localhost:4222
 
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
