@@ -5,11 +5,11 @@
   // TODO: adicionar um input e um botão à página
   // TODO: criar um método POST no api.service que envie o texto do input e exiba a resposta na página
 -->
-//<app-header></app-header>
-<div class="container" style="margin-top:100px;">
+<app-header></app-header>
+<div class="container" style="margin-top:200px;">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
-      <div class="card">
+      <div class="card mb-5">
         <div class="card-body">
           <p class="card-text"><span class="fw-bold">Data Atual</span>: {{dataAtual}}</p>
           <app-texto-form (onSubmit)="createHandler($event)"></app-texto-form>
@@ -20,49 +20,64 @@
           </div>
         </div>
       </div>
-      <ul class="list-group mt-4">
+     
+      
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div  *ngIf="textos.length > 0; else noTextos">
         
-        <li class="list-group-item" *ngFor="let texto of textos;">
-          <div class="row">
-            <div class="col-8 col-xxl-6" *ngIf="texto.is_updating && textoFormEdit; else noUpdating">
-              <form (ngSubmit)="submitEdit()" [formGroup]="textoFormEdit" #formDir2="ngForm" >
-                
-                <div class="input-group  ">
+        <div class="card mb-3 " *ngFor="let texto of textos;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8 col-xxl-6" *ngIf="texto.is_updating && textoFormEdit; else noUpdating">
+                <form (ngSubmit)="submitEdit()" [formGroup]="textoFormEdit" #formDir2="ngForm" >
                   
-                  <input type="hidden" formControlName="id" />
-                  <input type="texto" class="form-control" [class.is-invalid]="textoFormEdit.get('texto')?.invalid" formControlName="texto" id="textInput"  required>
-                  
-                  <button class="btn btn-outline-success" type="submit" id="button-addon1">Editar</button>
-                  <div class="invalid-feedback"*ngIf="textoFormEdit.get('texto')?.invalid">
-                    <span *ngIf="textoFormEdit.get('texto').errors['required']">Texto é obrigatório</span>
-                    <span *ngIf="textoFormEdit.get('texto').errors['minlength']">Mínimo de 8 caracteres</span>
+                  <div class="input-group  ">
+                    
+                    <input type="hidden" formControlName="id" />
+                    <input type="texto" class="form-control" [class.is-invalid]="textoFormEdit.get('texto')?.invalid" formControlName="texto" id="textInput"  required>
+                    
+                    <button class="btn btn-outline-success" type="submit" id="button-addon1">Editar</button>
+                    <div class="invalid-feedback"*ngIf="textoFormEdit.get('texto')?.invalid">
+                      <span *ngIf="textoFormEdit.get('texto').errors['required']">Texto é obrigatório</span>
+                      <span *ngIf="textoFormEdit.get('texto').errors['minlength']">Mínimo de 8 caracteres</span>
+                    </div>
+                    
                   </div>
+                </form>
+              </div>
+              <ng-template #noUpdating>
+                <div class="col">
+                  <p class="card-text">{{texto.texto}}</p>
                   
                 </div>
-              </form>
-            </div>
-            <ng-template #noUpdating>
-              <div class="col-6">
-                {{texto.texto}}
-                
-              </div>
-            </ng-template>
-            <div class="col">
-              <div class="float-end">
-                <span class="text-primary cursor-pointer fs-5 me-2" (click)="editHandler(texto)"><i class="{{texto.is_updating ? 'bi bi-pencil-fill' : 'bi bi-pencil'}}"></i></span>
-                <span class="text-danger cursor-pointer fs-5" (click)="removeHandler(texto.id)"><i class="bi bi-trash"></i></span>
+              </ng-template>
+              <div class="col">
+                <div class="float-end">
+                  <span class="text-primary cursor-pointer fs-5 me-2" (click)="editHandler(texto)"><i class="{{texto.is_updating ? 'bi bi-pencil-fill' : 'bi bi-pencil'}}"></i></span>
+                  <span class="text-danger cursor-pointer fs-5" (click)="removeHandler(texto.id)"><i class="bi bi-trash"></i></span>
+                </div>
               </div>
             </div>
           </div>
           
           
-        </li>
+        </div>
        
-      </ul>
+      </div>
+      <ng-template #noTextos>
+        <div class="alert alert-warning mt-3 text-center" role="alert">
+          Não há textos salvos no banco de dados
+        </div>
+      </ng-template>
+      <div class="alert alert-{{alerta.tipo}} mt-2 text-center" *ngIf="alerta && alerta.acao == 'pegarTextos'" role="alert">
+        {{alerta.menssagem}}
+      </div>
       <div class="alert alert-{{alerta.tipo}} mt-2 text-center" *ngIf="alerta && alerta.acao == 'editarTexto'" role="alert">
         {{alerta.menssagem}}
       </div>
-      
     </div>
   </div>
 </div>

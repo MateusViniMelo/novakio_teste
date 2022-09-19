@@ -1,7 +1,8 @@
 <form (ngSubmit)="submit()" [formGroup]="textoForm" #formDir="ngForm">
     <div class="mb-3">
       <label for="textInput" class="form-label">Insira um texto</label>
-      <input type="texto" class="{{texto.invalid && formDir.submitted ? 'form-control is-invalid' : 'form-control'}}" formControlName="texto" id="textInput" aria-describedby="textHelp" required>
+      <textarea rows="3" class="{{texto.invalid && formDir.submitted ? 'form-control is-invalid' : 'form-control'}}" formControlName="texto" id="textInput" aria-describedby="textHelp" required>
+      </textarea>
       <div class="invalid-feedback" *ngIf="texto.invalid && formDir.submitted">
         <span *ngIf="texto.errors?.required">Texto é obrigatório</span>
         <span *ngIf="texto.errors?.minlength">O texto deve conter no mínimo 8 caracteres</span>

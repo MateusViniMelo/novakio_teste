@@ -36,7 +36,16 @@ export class PaginaComponent implements OnInit {
        
       }
     });
-    this.apiService.getTextos().subscribe((textos) =>{
+    this.apiService.getTextos().pipe(
+      catchError((err) => {
+        this.alerta = {
+          acao: "pegarTextos",
+          tipo: 'danger',
+          menssagem: 'Ops! Não foi possível se conectar com o servidor, confira se há o banco de dados ou se o php está iniciado'
+        }
+        return [];
+      })
+    ).subscribe((textos) =>{
 
       textos.map((texto) => {
         texto["is_updating"] = false
@@ -63,6 +72,11 @@ export class PaginaComponent implements OnInit {
     ).subscribe((response) =>{
       response["is_updating"] = false
       this.textos.push(response)
+      this.alerta = {
+        acao: "",
+        tipo: "",
+        menssagem: ""
+      }
     })
       
     
@@ -106,6 +120,10 @@ export class PaginaComponent implements OnInit {
           tipo: "success",
           menssagem: "Texto foi editado com sucesso"
         }
+        const index = this.textos.findIndex(o => o.id == this.textoFormEdit.value.id)
+        this.textos[index].texto = this.textoFormEdit.value.texto
+        this.textos[index].is_updating = false
+        
       })
     }
 
