@@ -34,7 +34,8 @@
 1. Clonar o repositório
 2. Vá para a pasta `api`
 3. Execute `composer install`
-4. Copie o `.env.example` para `.env` e crie um banco de dados chamado `novakio_teste`
+4. Copie o `.env.example` para `.env`
+5. Crie um banco de dados chamado `novakio_teste` com o charset `utf8mb4_unicode_ci`
 5. Execute os comandos: `php artisan key:generate` , `php artisan migrate`
 6. Execute `php artisan serve` e o projeto será executado na porta http://localhost:8000
 
@@ -42,7 +43,7 @@
 1. Vá para a pasta `app`
 2. Execute `npm install` para instalar as dependências do projeto
 3. Execute o comando `ng serve --open`
-5. Open http://localhost:4222
+5. Open http://localhost:4200
 
 
 
