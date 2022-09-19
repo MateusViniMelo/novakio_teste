@@ -92,7 +92,11 @@ export class PaginaComponent implements OnInit {
   editHandler(texto: Texto){
     if(this.textoEdit && this.textoEdit.id != texto.id){
       const index = this.textos.findIndex(o => o.id == this.textoEdit.id)
-      this.textos[index].is_updating = false
+      if(this.textos[index]){
+        this.textos[index].is_updating = false
+      }
+      
+      
     }
     const index = this.textos.findIndex(o => o.id == texto.id)
     this.textos[index].is_updating = !this.textos[index].is_updating 
