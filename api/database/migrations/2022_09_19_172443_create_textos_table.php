@@ -15,7 +15,7 @@ class CreateTextosTable extends Migration
     {
         Schema::create('textos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('texto', 500);
+            $table->text('texto');
             $table->timestamps();
         });
     }

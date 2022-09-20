@@ -28,13 +28,13 @@ class TextoController extends Controller
     public function store(Request $request)
     {
         $regras = [
-            "texto" => "required|min:8|max:500"
+            "texto" => "required|min:8"
         ];
 
         $feedback = [
             "texto.required" => "O texto não pode ser vazio",
             "texto.min" => "O texto deve conter no mínimo 8 caracteres",
-            "texto.max" => "O texto deve conter no máximo 500 caracteres"
+            
         ];
 
 
